@@ -1,5 +1,6 @@
 [run]
 source = app/
+omit = app/config/*
 
 [report]
 exclude_lines = 
