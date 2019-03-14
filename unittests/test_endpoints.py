@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
+import os
+
 import pytest
 
 from main import app
+from tools.tools import flask_response_data, open_expected_template
+
+current_path = os.path.dirname(__file__)
 
 
 @pytest.fixture()
@@ -12,9 +17,9 @@ def app_fixture():
 
 
 @pytest.mark.parametrize(
-    'url_path, status_code, resp_data', (('/', 200, b'Hello World'), ('/wrong/url/path', 404, b'Not Found'))
+    'url_path, status_code, template', (('/', 200, 'expected_index'), ('/dd', 404, 'expected_not_found'))
 )
-def test_simple_endpoint(app_fixture, url_path, status_code, resp_data):
+def test_simple_endpoint(app_fixture, url_path, status_code, template):
     resp = app_fixture.get(url_path)
     assert resp._status_code == status_code
-    assert resp_data in resp.data
+    assert open_expected_template(current_path, template) in flask_response_data(resp)
