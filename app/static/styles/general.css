@@ -3,6 +3,7 @@ html, body {
     background-color: #95b0d8;
     height: 100%;
     margin: 0px;
+    padding: 0px;
 }
 
 #box {
@@ -14,4 +15,31 @@ html, body {
     background-color: #346fc6;
     box-shadow: 0px 0px 25px #172c48;
     text-align: center;
+}
+
+form > input {
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+form > input:focus{
+    border-radius: 5px;
+}
+
+form > input[type=text] {
+    min-width: 300px;
+    width: 80%;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+form > input[type=submit] {
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    margin-left: 10%;
+    font-size: 16px;
+    padding: 7px 12px 7px 12px;
 }
