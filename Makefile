@@ -18,5 +18,5 @@ black_all:
 test-unittests:
 	. venv/bin/activate && \
 	export PYTHONPATH=$PYTHONPATH:app/ && \
-	python -m pytest app/ unittests/ -v -ra --cov --cov-report term-missing:skip-covered --cov-fail-under=75 --pylama && \
+	python -m pytest app/ unittests/ -vv -s -ra --cov --cov-report term-missing:skip-covered --cov-fail-under=75 --pylama && \
 	rm -r ".coverage" ".pytest_cache" && find app unittests -name "__pycache__" -exec rm -rf {} +
