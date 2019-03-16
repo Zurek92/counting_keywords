@@ -1,6 +1,7 @@
 document.querySelector('form button').addEventListener('click', () => {
     let userUrl = document.querySelector('form input[name="url"]').value
-    let user_json = JSON.stringify({'url': userUrl});
+    let caseSensitive = document.querySelector('form div.checkbox input[name="case_sensitive"]').checked
+    let user_json = JSON.stringify({'url': userUrl, 'case_sensitive': caseSensitive});
     fetch('/keywords', {
         method: 'post',
         headers: {
