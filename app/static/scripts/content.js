@@ -13,7 +13,8 @@ function fetch_script() {
     })
     .then(resp => resp.json())
     .then(resp => {
-        let errorMessage = document.querySelector('form div.errorMessage');
+        const errorMessage = document.querySelector('form div.errorMessage');
+        const outputField = document.querySelector('form output');
         if (resp['succes']) {
             errorMessage.innerHTML = ''
             const tableParts = [];
@@ -21,11 +22,14 @@ function fetch_script() {
                 tableParts.push(`<tr><td>${elem}</td><td>${resp['words'][elem]}</td></tr>`);
             }
             let preparedTable = `
+            <table>
             <tr><th>keyword</th><th>counts</th></tr>
             ${tableParts.join('')}
+            </table>
             `
-            document.querySelector('table').innerHTML = preparedTable;
+            outputField.innerHTML = preparedTable;
         } else {
+            outputField.innerHTML = '';
             errorMessage.innerHTML = resp['message'];
         }
     })
