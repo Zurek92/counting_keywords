@@ -1,6 +1,8 @@
-document.querySelector('form button').addEventListener('click', () => {
-    let userUrl = document.querySelector('form input[name="url"]').value
-    let caseSensitive = document.querySelector('form div.checkbox input[name="case_sensitive"]').checked
+function fetch_script() {
+    formButton.removeEventListener('click', fetch_script)
+    formButton.innerHTML = 'Waiting'
+    let userUrl = document.querySelector('form input[name="url"]').value;
+    let caseSensitive = document.querySelector('form div.checkbox input[name="case_sensitive"]').checked;
     let user_json = JSON.stringify({'url': userUrl, 'case_sensitive': caseSensitive});
     fetch('/keywords', {
         method: 'post',
@@ -24,8 +26,14 @@ document.querySelector('form button').addEventListener('click', () => {
             `
             document.querySelector('table').innerHTML = preparedTable;
         } else {
-            errorMessage.innerHTML = resp['message']
+            errorMessage.innerHTML = resp['message'];
         }
-
     })
-})
+    .then(() => {
+        formButton.innerHTML = 'Submit';
+        formButton.addEventListener('click', fetch_script);
+    })
+}
+
+const formButton = document.querySelector('form button');
+formButton.addEventListener('click', fetch_script);
