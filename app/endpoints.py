@@ -24,3 +24,8 @@ def keywords_endpoint(user_json):
     if not keywords_list:
         return jsonify({'status': 200, 'message': 'This page doesn\'t have any keywords.'})
     return jsonify({'succes': True, 'words': word_counter(keywords_list, text, user_json['case_sensitive'])})
+
+
+@endpoint.app_errorhandler(404)
+def page_not_found(e):
+    return render_template('not_found.html'), 404
