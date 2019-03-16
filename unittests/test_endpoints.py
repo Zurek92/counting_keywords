@@ -31,15 +31,23 @@ def test_simple_endpoint_get(app_fixture, url_path, status_code, template):
     (
         (
             '/keywords',
-            {'url': 'http://google.com'},
+            {'url': 'http://google.com', 'case_sensitive': True},
             '<html><head><meta name="keywords" content="python, javascript" /></head><body>python '
-            '<span>javascript</span><b>python</b></body></html>',
+            '<span>javascript</span><b>python</b> PYTHON</body></html>',
             {'succes': True, 'words': {'python': 2, 'javascript': 1}},
             200,
         ),
         (
             '/keywords',
-            {'url': 'http://google.com'},
+            {'url': 'http://google.com', 'case_sensitive': False},
+            '<html><head><meta name="keywords" content="python, javascript" /></head><body>python '
+            '<span>javascript</span><b>python</b> PYTHON</body></html>',
+            {'succes': True, 'words': {'python': 3, 'javascript': 1}},
+            200,
+        ),
+        (
+            '/keywords',
+            {'url': 'http://google.com', 'case_sensitive': True},
             '<html><head></head><body>python ' '<span>javascript</span><b>python</b></body></html>',
             {'status': 200, 'message': 'This page doesn\'t have any keywords.'},
             200,

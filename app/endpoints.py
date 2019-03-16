@@ -23,4 +23,4 @@ def keywords_endpoint(user_json):
     keywords_list, text = html_parser(user_json['content'])
     if not keywords_list:
         return jsonify({'status': 200, 'message': 'This page doesn\'t have any keywords.'})
-    return jsonify({'succes': True, 'words': word_counter(keywords_list, text)})
+    return jsonify({'succes': True, 'words': word_counter(keywords_list, text, user_json['case_sensitive'])})

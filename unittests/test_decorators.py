@@ -6,7 +6,10 @@ from main import app
 from decorators import check_json, get_content
 
 
-@pytest.mark.parametrize('user_json', ({'url': 'http://www.google.com'}, {'url': 'http://google.com'}))
+@pytest.mark.parametrize(
+    'user_json',
+    ({'url': 'http://www.google.com', 'case_sensitive': True}, {'url': 'http://google.com', 'case_sensitive': True}),
+)
 def test_check_json(user_json):
 
     with app.test_request_context(json=user_json):

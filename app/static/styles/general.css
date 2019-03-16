@@ -37,11 +37,16 @@ form > input[type=text] {
     margin-top: 100px;
 }
 
-form > button {
-    cursor: pointer;
-    display: block;
+form > button,
+form > .checkbox {
+    text-align: left;
     margin-top: 10px;
     margin-left: 10%;
+}
+
+form > button {
+    display: block;
+    cursor: pointer;
     font-size: 16px;
     padding: 7px 12px 7px 12px;
 }

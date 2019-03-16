@@ -16,10 +16,13 @@ def html_parser(html):
     return (keywords_list, text)
 
 
-def word_counter(words_list, text):
+def word_counter(words_list, text, case_sensitive=True):
     """Counting words in text.
 
     :param word_list: list with word, which should be counted
     :param text: string where words are counted
+    :param case_sensitive: check if keywords counting should be case sensitive
     """
+    if not case_sensitive:
+        text = text.lower()
     return {word: text.count(word) for word in words_list}
