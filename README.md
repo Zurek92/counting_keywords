@@ -16,3 +16,7 @@ class APP:
 In main folder of project run command:<br>
 `make venv` which prepare everything.
 1. run app with command: `make dev_run`
+
+### Using docker-compose
+1. enter docker folder: `cd docker`
+1. run docker compose: `docker-compose up`
