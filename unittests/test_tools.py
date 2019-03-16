@@ -28,14 +28,21 @@ def test_html_parser(html_input, expected_keywords, expected_text):
 
 
 @pytest.mark.parametrize(
-    'word_list, text, expected_output',
+    'word_list, text, case_sensitive, expected_output',
     (
         (
             ['python', 'foo', 'bar'],
-            'hi python word foo bar foo foo xyz, baar www hey hiho wooo',
+            'hi python word foo bar foo foo xyz, baar www hey hiho wooo FOO',
+            True,
             {'python': 1, 'foo': 3, 'bar': 1},
+        ),
+        (
+            ['python', 'foo', 'bar'],
+            'hi python word foo bar foo foo xyz, baar www hey hiho wooo FOO',
+            False,
+            {'python': 1, 'foo': 4, 'bar': 1},
         ),
     ),
 )
-def test_word_counter(word_list, text, expected_output):
-    assert word_counter(word_list, text) == expected_output
+def test_word_counter(word_list, text, case_sensitive, expected_output):
+    assert word_counter(word_list, text, case_sensitive) == expected_output
