@@ -5,5 +5,5 @@ import os
 
 class APP:
     IP = "0.0.0.0"
-    PORT = os.environ.get('API_PORT')
+    PORT = os.environ.get('APP_PORT')
     DEBUG = False
