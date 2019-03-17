@@ -25,4 +25,4 @@ def word_counter(words_list, text, case_sensitive=True):
     """
     if not case_sensitive:
         text = text.lower()
-    return {word: text.count(word) for word in words_list}
+    return {word: text.count(word if case_sensitive else word.lower()) for word in words_list}
